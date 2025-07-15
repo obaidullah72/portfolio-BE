@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Obaidullah Mansoor | Full Stack Developer Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', Arial, sans-serif; }
+    .glass {
+      background: rgba(35,39,43,0.85);
+      box-shadow: 0 8px 32px rgba(32,201,151,0.12);
+      backdrop-filter: blur(8px);
+      border-radius: 1.5rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-16px); }
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .hero-gradient {
+      background: linear-gradient(135deg, #181a1b 0%, #23272b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-gradient::before {
+      content: '';
+      position: absolute;
+      top: -100px; left: -100px; width: 400px; height: 400px;
+      background: radial-gradient(circle, #20c99755 0%, transparent 80%);
+      z-index: 0;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-gradient::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; right: -120px; width: 400px; height: 400px;
+      background: radial-gradient(circle, #0d6efd55 0%, transparent 80%);
+      z-index: 0;
+      animation: float 7s ease-in-out infinite reverse;
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .social-animated a { transition: transform 0.2s, color 0.2s; }
+    .social-animated a:hover { transform: scale(1.2) rotate(-8deg); color: #20c997 !important; }
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 16px rgba(32,201,151,0.2);
+      margin-bottom: 2rem;
+    }
+    .card-animated { transition: transform 0.3s, box-shadow 0.3s; }
+    .card-animated:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 12px 48px #20c99744; }
+    .timeline-dot {
+      width: 18px; height: 18px; background: linear-gradient(135deg, #20c997, #0d6efd);
+      border-radius: 50%; box-shadow: 0 0 16px #20c99788; border: 3px solid #23272b;
+      position: absolute; left: -36px; top: 8px;
+    }
+    .timeline-line {
+      position: absolute; left: -27px; top: 0; bottom: 0; width: 4px;
+      background: linear-gradient(180deg, #20c997 0%, #0d6efd 100%);
+      border-radius: 2px; box-shadow: 0 0 16px #20c99744;
+    }
+    .carousel-indicators [data-bs-target] {
+      background-color: #20c997;
+    }
+    .project-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 60px rgba(32, 201, 151, 0.2);
+    }
+    .project-img {
+      transition: transform 0.5s ease-in-out;
+    }
+    .project-card:hover .project-img {
+      transform: scale(1.1);
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
+<body class="bg-dark text-light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm glass sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold fs-3" href="#">Obaidullah Mansoor</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header id="home" class="hero-gradient d-flex align-items-center min-vh-100">
+    <div class="container hero-content text-center">
+      <img src="profile.jpg" alt="Profile" class="rounded-circle mb-4 shadow-lg border border-4 border-primary floating" width="170" height="170">
+      <h1 class="display-2 fw-bold mb-2 fade-in">Obaidullah Mansoor</h1>
+      <p class="lead mb-4 fade-in">Full Stack Developer <span class="text-primary">|</span> Python, Django, React, JS, HTML, CSS</p>
+      <div class="d-flex justify-content-center gap-3 mb-4 social-animated fade-in">
+        <a href="mailto:obaidullahman7@gmail.com" class="text-light fs-2"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+923098899679" class="text-light fs-2"><i class="fas fa-phone"></i></a>
+        <a href="#" class="text-light fs-2"><i class="fab fa-github"></i></a>
+        <a href="#" class="text-light fs-2"><i class="fab fa-linkedin"></i></a>
+      </div>
+      <div class="mb-4 fade-in">
+        <a href="#contact" class="btn btn-primary btn-lg me-2"><i class="fas fa-paper-plane me-2"></i>Contact Me</a>
+        <a href="https://drive.google.com/file/d/1ZGX7mm3oNtWCOq2BAXwepgNYxmkwYL-q/view?usp=sharing" target="_blank" class="btn btn-outline-light btn-lg"><i class="fas fa-download me-2"></i>Download CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about" class="py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-4 mb-lg-0 fade-in">
+          <div class="glass p-4 h-100">
+            <h2 class="section-title">About Me</h2>
+            <p class="fs-5">I'm <b>Obaidullah Mansoor</b>, a passionate full stack developer with a knack for building scalable, beautiful web applications. I love working with Python, Django, React, and modern web technologies to deliver impactful solutions.</p>
+            <h5 class="mt-4">Skills</h5>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="badge bg-primary">Python</span>
+              <span class="badge bg-primary">Django</span>
+              <span class="badge bg-primary">React</span>
+              <span class="badge bg-primary">JavaScript</span>
+              <span class="badge bg-primary">HTML</span>
+              <span class="badge bg-primary">CSS</span>
+              <span class="badge bg-primary">Bootstrap</span>
+              <span class="badge bg-primary">REST API</span>
+              <span class="badge bg-primary">PostgreSQL</span>
+              <span class="badge bg-primary">AWS</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center fade-in">
+          <img src="profile.jpg" alt="Profile" class="img-fluid rounded-4 shadow-lg glass p-2" width="340">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-5 bg-secondary">
+    <div class="container">
+      <h2 class="section-title text-center">Projects</h2>
+      <div class="d-flex justify-content-center mb-4 gap-2">
+        <button class="btn btn-outline-primary project-filter active" data-filter="all">All</button>
+        <button class="btn btn-outline-primary project-filter" data-filter="python">Python</button>
+        <button class="btn btn-outline-primary project-filter" data-filter="flutter">Flutter</button>
+      </div>
+      <div class="row g-4" id="project-list">
+        <!-- Project 1: Python -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/signbot_backend_models/main/demo.png" class="card-img-top project-img" alt="signbot_backend_models" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">SignBot Backend Models</h5>
+              <p class="card-text">Backend models for SignBot, a sign language recognition system. Built with Python. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fas fa-database me-1"></i>ML</span>
+              </div>
+              <a href="https://github.com/obaidullah72/signbot_backend_models" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 2: Flutter -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="flutter">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/signbot_flutter_app/main/demo.png" class="card-img-top project-img" alt="signbot_flutter_app" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">SignBot Flutter App</h5>
+              <p class="card-text">Flutter mobile app for SignBot, enabling real-time sign language translation. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-dart me-1"></i>Dart</span>
+                <span class="badge bg-secondary"><i class="fab fa-flutter me-1"></i>Flutter</span>
+              </div>
+              <a href="https://github.com/obaidullah72/signbot_flutter_app" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 3: Python -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/python-finance-tracker/main/demo.png" class="card-img-top project-img" alt="python-finance-tracker" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Python Finance Tracker</h5>
+              <p class="card-text">A personal finance tracker built with Python and HTML for easy expense management. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fab fa-html5 me-1"></i>HTML</span>
+              </div>
+              <a href="https://github.com/obaidullah72/python-finance-tracker" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 4: Flutter -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="flutter">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/spendwise/main/demo.png" class="card-img-top project-img" alt="spendwise" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">SpendWise</h5>
+              <p class="card-text">A Flutter app for tracking expenses and managing budgets. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-dart me-1"></i>Dart</span>
+                <span class="badge bg-secondary"><i class="fab fa-flutter me-1"></i>Flutter</span>
+              </div>
+              <a href="https://github.com/obaidullah72/spendwise" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 5: Python -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/house_prediction/main/demo.png" class="card-img-top project-img" alt="house_prediction" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">House Price Prediction</h5>
+              <p class="card-text">A Python ML project for predicting house prices using regression models. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fas fa-chart-line me-1"></i>ML</span>
+              </div>
+              <a href="https://github.com/obaidullah72/house_prediction" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 6: Flutter -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item" data-tech="flutter">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/animated_authscreens/main/demo.png" class="card-img-top project-img" alt="animated_authscreens" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Animated Auth Screens</h5>
+              <p class="card-text">A Flutter app with beautifully animated authentication screens. <br><span class='text-muted small'>2024</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-dart me-1"></i>Dart</span>
+                <span class="badge bg-secondary"><i class="fab fa-flutter me-1"></i>Flutter</span>
+              </div>
+              <a href="https://github.com/obaidullah72/animated_authscreens" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <!-- Project 7-12: Hidden by default, shown on 'Show More' click -->
+        <div class="col-md-6 col-lg-4 fade-in project-card-item d-none" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/speech-to-code/main/demo.png" class="card-img-top project-img" alt="speech-to-code" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Speech to Code</h5>
+              <p class="card-text">A Python project that converts speech to code using AI. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fas fa-microphone me-1"></i>AI</span>
+              </div>
+              <a href="https://github.com/obaidullah72/speech-to-code" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-in project-card-item d-none" data-tech="flutter">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/chatapp_ui_fullapp/main/demo.png" class="card-img-top project-img" alt="chatapp_ui_fullapp" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">ChatApp UI FullApp</h5>
+              <p class="card-text">A complete chat app UI built with Flutter. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-dart me-1"></i>Dart</span>
+                <span class="badge bg-secondary"><i class="fab fa-flutter me-1"></i>Flutter</span>
+              </div>
+              <a href="https://github.com/obaidullah72/chatapp_ui_fullapp" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-in project-card-item d-none" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/auctions-project/main/demo.png" class="card-img-top project-img" alt="auctions-project" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Auctions Project</h5>
+              <p class="card-text">A Django-based auction platform for real-time bidding. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fab fa-django me-1"></i>Django</span>
+              </div>
+              <a href="https://github.com/obaidullah72/auctions-project" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-in project-card-item d-none" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/django-chatapp/main/demo.png" class="card-img-top project-img" alt="django-chatapp" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Django ChatApp</h5>
+              <p class="card-text">A real-time chat application built with Django Channels. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fab fa-django me-1"></i>Django</span>
+              </div>
+              <a href="https://github.com/obaidullah72/django-chatapp" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 fade-in project-card-item d-none" data-tech="python">
+          <div class="card glass card-animated h-100 project-card position-relative overflow-hidden">
+            <img src="https://raw.githubusercontent.com/obaidullah72/blog_app_with_api/main/demo.png" class="card-img-top project-img" alt="blog_app_with_api" style="object-fit:cover; height:180px;">
+            <div class="card-body">
+              <h5 class="card-title">Blog App with API</h5>
+              <p class="card-text">A blog platform with REST API built using Django. <br><span class='text-muted small'>2025</span></p>
+              <div class="mb-2 d-flex flex-wrap gap-2 align-items-center">
+                <span class="badge bg-secondary"><i class="fab fa-python me-1"></i>Python</span>
+                <span class="badge bg-secondary"><i class="fab fa-django me-1"></i>Django</span>
+              </div>
+              <a href="https://github.com/obaidullah72/blog_app_with_api" class="btn btn-outline-primary btn-sm" target="_blank">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" id="show-more-projects">Show More</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="py-5">
+    <div class="container position-relative">
+      <h2 class="section-title text-center">Experience</h2>
+      <div class="row">
+        <div class="col-md-10 mx-auto">
+          <div class="position-relative ms-5 ps-4">
+            <div class="timeline-line"></div>
+            <div class="timeline-item mb-5 fade-in position-relative">
+              <div class="timeline-dot"></div>
+              <div class="d-flex align-items-center mb-2">
+                <img src="sds.jpg" alt="SDS Logo" width="48" height="48" class="me-3 rounded-3 shadow-sm bg-dark p-1">
+                <div>
+                  <h5 class="mb-0">SDS Superior Digital Service</h5>
+                  <span class="text-muted small">Co-Founder & Marketing Executive</span><br>
+                  <span class="badge bg-primary">July 2022 - Present</span> <span class="text-muted small ms-2">Lahore, Pakistan</span>
+                </div>
+              </div>
+              <ul class="mb-2 ps-4">
+                <li>Co-founded and led marketing for a digital services company</li>
+                <li>Grew client base by 200% in 1 year</li>
+                <li>Oversaw digital transformation projects for SMEs</li>
+              </ul>
+            </div>
+            <div class="timeline-item mb-5 fade-in position-relative">
+              <div class="timeline-dot"></div>
+              <div class="d-flex align-items-center mb-2">
+                <img src="samaritan.jpeg" alt="Samaritan Logo" width="48" height="48" class="me-3 rounded-3 shadow-sm bg-white p-1">
+                <div>
+                  <h5 class="mb-0">Samaritan Technologies</h5>
+                  <span class="text-muted small">Flutter Intern</span><br>
+                  <span class="badge bg-primary">July 2024 - Dec 2024</span> <span class="text-muted small ms-2">Remote</span>
+                </div>
+              </div>
+              <ul class="mb-2 ps-4">
+                <li>Worked on cross-platform mobile apps using Flutter</li>
+                <li>Contributed to UI/UX and app performance improvements</li>
+                <li>Collaborated with senior engineers on live projects</li>
+              </ul>
+            </div>
+            <div class="timeline-item mb-5 fade-in position-relative">
+              <div class="timeline-dot"></div>
+              <div class="d-flex align-items-center mb-2">
+                <img src="samaritan.jpeg" alt="Samaritan Logo" width="48" height="48" class="me-3 rounded-3 shadow-sm bg-white p-1">
+                <div>
+                  <h5 class="mb-0">Samaritan Technologies</h5>
+                  <span class="text-muted small">Python Intern</span><br>
+                  <span class="badge bg-primary">Jan 2025 - March 2025</span> <span class="text-muted small ms-2">Remote</span>
+                </div>
+              </div>
+              <ul class="mb-2 ps-4">
+                <li>Developed Python-based solutions and automation scripts</li>
+                <li>Supported backend development and data processing</li>
+                <li>Automated reporting and data pipelines</li>
+              </ul>
+            </div>
+            <div class="timeline-item mb-5 fade-in position-relative">
+              <div class="timeline-dot"></div>
+              <div class="d-flex align-items-center mb-2">
+                <img src="samaritan.jpeg" alt="Samaritan Logo" width="48" height="48" class="me-3 rounded-3 shadow-sm bg-white p-1">
+                <div>
+                  <h5 class="mb-0">Samaritan Technologies</h5>
+                  <span class="text-muted small">Associate Software Engineer</span><br>
+                  <span class="badge bg-primary">April 2025 - Present</span> <span class="text-muted small ms-2">Remote</span>
+                </div>
+              </div>
+              <ul class="mb-2 ps-4">
+                <li>Building scalable software solutions and APIs</li>
+                <li>Collaborating with cross-functional teams</li>
+                <li>Delivering high-quality products on schedule</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="py-5 bg-dark">
+    <div class="container">
+      <h2 class="section-title text-center">Testimonials</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="card glass p-4 border-0">
+                  <div class="d-flex align-items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle me-3" width="56" height="56">
+                    <div>
+                      <h6 class="mb-0">Ali Raza</h6>
+                      <small class="text-muted">CEO, Tech Solutions</small>
+                    </div>
+                  </div>
+                  <p class="mb-0">"Obaidullah is a highly skilled developer who delivers quality work on time. His expertise in Django and React is top-notch!"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row justify-content-center">
+              <div class="col-md-8">
+                <div class="card glass p-4 border-0">
+                  <div class="d-flex align-items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle me-3" width="56" height="56">
+                    <div>
+                      <h6 class="mb-0">Sara Khan</h6>
+                      <small class="text-muted">Project Manager, Web Innovators</small>
+                    </div>
+                  </div>
+                  <p class="mb-0">"Great communicator and problem solver. Obaidullah's solutions are always efficient and reliable."</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+        <div class="carousel-indicators mt-4">
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-secondary position-relative" style="overflow:hidden;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index:0; pointer-events:none;">
+      <div style="position:absolute;left:10%;top:10%;width:180px;height:180px;background:radial-gradient(circle,#20c99755 0%,transparent 80%);filter:blur(32px);"></div>
+      <div style="position:absolute;right:10%;bottom:10%;width:220px;height:220px;background:radial-gradient(circle,#0d6efd55 0%,transparent 80%);filter:blur(40px);"></div>
+    </div>
+    <div class="container position-relative" style="z-index:1;">
+      <div class="text-center mb-5">
+        <h2 class="section-title">Contact Me</h2>
+        <div class="text-muted mb-2">Let's build something amazing together. Reach out for collaborations, freelance, or just to say hi!</div>
+      </div>
+      <div class="row g-4 align-items-stretch justify-content-center">
+        <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-stretch">
+          <form id="contact-form" class="glass p-5 shadow-lg rounded-5 w-100 d-flex flex-column justify-content-center contact-form-premium" style="backdrop-filter: blur(20px); min-height: 440px; background: linear-gradient(135deg,rgba(32,201,151,0.18) 0%,rgba(13,110,253,0.14) 100%); border: 2px solid rgba(32,201,151,0.18); box-shadow: 0 8px 48px #20c99733;">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="form-floating mb-4">
+                  <input type="text" class="form-control rounded-pill px-4 py-3 fs-5" id="name" name="from_name" placeholder="Your Name" required style="background:rgba(255,255,255,0.04);border:1.5px solid #20c997;">
+                  <label for="name" class="ps-4">Name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-floating mb-4">
+                  <input type="email" class="form-control rounded-pill px-4 py-3 fs-5" id="email" name="from_email" placeholder="Your Email" required style="background:rgba(255,255,255,0.04);border:1.5px solid #0d6efd;">
+                  <label for="email" class="ps-4">Email</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-floating mb-4">
+              <textarea class="form-control rounded-4 px-4 py-3 fs-5" id="message" name="message" placeholder="Your Message" style="height: 120px; background:rgba(255,255,255,0.04);border:1.5px solid #20c997;" required></textarea>
+              <label for="message" class="ps-4">Message</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2 mt-2 shadow-lg" style="font-size:1.3rem; background: linear-gradient(90deg, #20c997 0%, #0d6efd 100%); border: none; box-shadow: 0 2px 24px #20c99755, 0 4px 32px #0d6efd33; border-radius: 2rem; transition: box-shadow 0.2s;">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+            <div id="form-status" class="mt-3"></div>
+          </form>
+        </div>
+        <div class="col-lg-6 d-flex align-items-stretch">
+          <div class="glass p-5 rounded-4 shadow-lg w-100 d-flex flex-column justify-content-center align-items-center text-center contact-info-premium" style="background: linear-gradient(135deg,rgba(32,201,151,0.12) 0%,rgba(13,110,253,0.10) 100%); min-height: 420px;">
+            <div class="mb-4">
+              <span class="d-inline-flex align-items-center justify-content-center mb-3" style="width:70px;height:70px;border-radius:50%;background:linear-gradient(135deg,#20c997 0%,#0d6efd 100%);box-shadow:0 2px 24px #20c99744;font-size:2.5rem;color:#fff;">
+                <i class="fas fa-user-astronaut"></i>
+              </span>
+              <h4 class="fw-bold mb-0">Obaidullah Mansoor</h4>
+              <div class="text-muted">Full Stack Developer</div>
+            </div>
+            <div class="d-flex flex-column gap-4 w-100">
+              <div class="d-flex align-items-center gap-3 justify-content-center">
+                <span class="icon d-flex align-items-center justify-content-center" style="font-size:2rem;background:linear-gradient(135deg,#20c997 0%,#0d6efd 100%);border-radius:50%;width:48px;height:48px;color:#fff;box-shadow:0 2px 16px #20c99744;"><i class="fas fa-envelope"></i></span>
+                <div class="text-start">
+                  <div class="fw-bold">Email</div>
+                  <a href="mailto:obaidullahman7@gmail.com" class="text-light fs-6">obaidullahman7@gmail.com</a>
+                </div>
+              </div>
+              <div class="d-flex align-items-center gap-3 justify-content-center">
+                <span class="icon d-flex align-items-center justify-content-center" style="font-size:2rem;background:linear-gradient(135deg,#0d6efd 0%,#20c997 100%);border-radius:50%;width:48px;height:48px;color:#fff;box-shadow:0 2px 16px #0d6efd44;"><i class="fas fa-phone"></i></span>
+                <div class="text-start">
+                  <div class="fw-bold">Phone</div>
+                  <a href="tel:+923098899679" class="text-light fs-6">+92 309 8899679</a>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4">
+              <a href="mailto:obaidullahman7@gmail.com" class="btn btn-outline-light btn-lg me-2"><i class="fas fa-envelope me-2"></i>Email Me</a>
+              <a href="tel:+923098899679" class="btn btn-outline-light btn-lg"><i class="fas fa-phone me-2"></i>Call</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="mt-5">
+    <div class="container footer-content">
+      <div>
+        <small>&copy; 2024 Obaidullah Mansoor. All rights reserved.</small>
+      </div>
+      <div class="footer-social">
+        <a href="mailto:obaidullahman7@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+923098899679" aria-label="Phone"><i class="fas fa-phone"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/scripts.js"></script>
+  <script>
+    // Animate on scroll
+    function revealOnScroll() {
+      document.querySelectorAll('.fade-in').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    window.addEventListener('DOMContentLoaded', revealOnScroll);
+
+    // Initialize EmailJS (replace 'YOUR_USER_ID' with your EmailJS user ID)
+    emailjs.init('YOUR_USER_ID'); // <-- Replace with your EmailJS user ID
+
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your EmailJS values
+      emailjs.sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', this)
+        .then(function() {
+          document.getElementById('form-status').innerHTML = '<span style="color: #20c997;">Message sent successfully!</span>';
+          document.getElementById('contact-form').reset();
+        }, function(error) {
+          document.getElementById('form-status').innerHTML = '<span style="color: #dc3545;">Failed to send message. Please try again later.</span>';
+        });
+    });
+  </script>
+</body>
+</html> 
