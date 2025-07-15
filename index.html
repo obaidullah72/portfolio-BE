@@ -7,93 +7,387 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --teal: #20c997;
+      --blue: #0d6efd;
+      --glass-bg: rgba(35,39,43,0.85);
+      --glass-border: rgba(255,255,255,0.08);
+      --grey: #23272b;
+    }
     html { scroll-behavior: smooth; }
     body { font-family: 'Inter', Arial, sans-serif; }
-    .glass {
-      background: rgba(35,39,43,0.85);
-      box-shadow: 0 8px 32px rgba(32,201,151,0.12);
-      backdrop-filter: blur(8px);
-      border-radius: 1.5rem;
-      border: 1px solid rgba(255,255,255,0.08);
-    }
-    .floating {
-      animation: float 3s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-16px); }
-    }
-    .fade-in {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
-    }
-    .fade-in.visible {
-      opacity: 1;
-      transform: none;
-    }
+    /* --- HERO SECTION --- */
     .hero-gradient {
-      background: linear-gradient(135deg, #181a1b 0%, #23272b 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(120deg, #181a1b 0%, #23272b 100%);
       position: relative;
       overflow: hidden;
     }
-    .hero-gradient::before {
-      content: '';
+    .hero-bg-svg {
       position: absolute;
-      top: -100px; left: -100px; width: 400px; height: 400px;
-      background: radial-gradient(circle, #20c99755 0%, transparent 80%);
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: 0;
-      animation: float 6s ease-in-out infinite;
+      pointer-events: none;
     }
-    .hero-gradient::after {
-      content: '';
-      position: absolute;
-      bottom: -120px; right: -120px; width: 400px; height: 400px;
-      background: radial-gradient(circle, #0d6efd55 0%, transparent 80%);
-      z-index: 0;
-      animation: float 7s ease-in-out infinite reverse;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
     }
-    .hero-content { position: relative; z-index: 1; }
-    .social-animated a { transition: transform 0.2s, color 0.2s; }
-    .social-animated a:hover { transform: scale(1.2) rotate(-8deg); color: #20c997 !important; }
-    .section-title {
-      font-size: 2.5rem;
+    .hero-profile {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 6px solid var(--teal);
+      box-shadow: 0 0 64px #20c99755, 0 8px 32px #0d6efd33;
+      margin-bottom: 2rem;
+      background: #fff;
+      animation: float 4s ease-in-out infinite;
+    }
+    .hero-title {
+      font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+      font-size: 3.2rem;
       font-weight: 900;
-      letter-spacing: 1px;
-      text-shadow: 0 2px 16px rgba(32,201,151,0.2);
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+    }
+    .hero-subtitle {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #e0e0e0;
+      margin-bottom: 1.5rem;
+      min-height: 2.2em;
+    }
+    .typewriter {
+      display: inline-block;
+      border-right: 2px solid var(--teal);
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      font-family: 'Montserrat', 'Inter', Arial, sans-serif;
+    }
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: var(--teal); }
+    }
+    .hero-social {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
       margin-bottom: 2rem;
     }
-    .card-animated { transition: transform 0.3s, box-shadow 0.3s; }
-    .card-animated:hover { transform: translateY(-10px) scale(1.03); box-shadow: 0 12px 48px #20c99744; }
-    .timeline-dot {
-      width: 18px; height: 18px; background: linear-gradient(135deg, #20c997, #0d6efd);
-      border-radius: 50%; box-shadow: 0 0 16px #20c99788; border: 3px solid #23272b;
-      position: absolute; left: -36px; top: 8px;
+    .hero-social a {
+      font-size: 2.2rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 50%;
+      width: 54px; height: 54px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 16px #20c99744;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .hero-social a:hover {
+      transform: scale(1.15) rotate(-8deg);
+      box-shadow: 0 4px 32px #20c99788;
+      color: var(--teal);
+      background: #fff;
+    }
+    .hero-btns {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns .btn {
+      font-size: 1.2rem;
+      padding: 0.8rem 2.2rem;
+      border-radius: 2rem;
+      font-weight: 700;
+      box-shadow: 0 2px 24px #20c99755, 0 4px 32px #0d6efd33;
+      border: none;
+      transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+    }
+    .hero-btns .btn-primary {
+      background: linear-gradient(90deg, var(--teal) 0%, var(--blue) 100%);
+      color: #fff;
+    }
+    .hero-btns .btn-outline-primary {
+      background: transparent;
+      border: 2px solid var(--teal);
+      color: var(--teal);
+    }
+    .hero-btns .btn-outline-primary:hover {
+      background: var(--teal);
+      color: #fff;
+    }
+    .hero-arrow {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      font-size: 2.8rem;
+      color: var(--teal);
+      opacity: 0.7;
+      animation: bounce 2s infinite;
+      z-index: 2;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(16px); }
+    }
+    /* --- ABOUT SECTION --- */
+    #about {
+      background: linear-gradient(120deg, #181a1b 0%, #23272b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .about-bg-svg {
+      position: absolute; z-index: 0; opacity: 0.18; pointer-events: none;
+      top: 0; left: 0; width: 100%; height: 100%;
+    }
+    .about-card {
+      background: rgba(32,201,151,0.10);
+      border: 2px solid rgba(32,201,151,0.18);
+      box-shadow: 0 8px 48px #20c99733;
+      border-radius: 2rem;
+      padding: 2.5rem 2rem;
+      position: relative;
+      z-index: 2;
+    }
+    .about-profile-img {
+      max-width: 320px;
+      width: 100%;
+      border-radius: 2rem;
+      border: 5px solid var(--teal);
+      box-shadow: 0 0 48px var(--teal), 0 8px 32px #0d6efd33;
+      margin: 0 auto;
+      background: #fff;
+    }
+    .about-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 1.5rem;
+    }
+    .about-skills .badge {
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      color: #fff;
+      font-size: 1.05rem;
+      border-radius: 1.2rem;
+      padding: 0.5rem 1.2rem;
+      box-shadow: 0 2px 8px #20c99733;
+      font-weight: 600;
+    }
+    .about-bars {
+      margin-bottom: 1.5rem;
+    }
+    .about-bar-label {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      color: #20c997;
+    }
+    .about-bar {
+      background: #222;
+      border-radius: 1rem;
+      overflow: hidden;
+      margin-bottom: 0.7rem;
+      height: 18px;
+      box-shadow: 0 2px 8px #20c99722;
+    }
+    .about-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      transition: width 1.2s cubic-bezier(.77,0,.18,1);
+    }
+    .about-quote {
+      font-style: italic;
+      color: #aaa;
+      margin-top: 1.5rem;
+      border-left: 4px solid var(--teal);
+      padding-left: 1rem;
+      font-size: 1.1rem;
+    }
+    /* --- PROJECTS SECTION --- */
+    #projects {
+      background: #181a1b;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 5rem;
+    }
+    .projects-bg-svg {
+      position: absolute; z-index: 0; opacity: 0.12; pointer-events: none;
+      top: 0; left: 0; width: 100%; height: 100%;
+    }
+    .project-filter {
+      font-weight: 700;
+      border-radius: 2rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.1rem;
+      margin: 0 0.2rem;
+      border: 2px solid var(--teal);
+      background: transparent;
+      color: var(--teal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .project-filter.active, .project-filter:hover {
+      background: var(--teal);
+      color: #fff;
+    }
+    .project-card {
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 8px 32px #20c99722;
+      background: rgba(35,39,43,0.92);
+      border: 1.5px solid var(--glass-border);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .project-card:hover {
+      transform: translateY(-10px) scale(1.04);
+      box-shadow: 0 15px 60px var(--teal);
+    }
+    .project-img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 1rem 1rem 0 0;
+      transition: transform 0.5s, filter 0.5s;
+      filter: grayscale(20%);
+    }
+    .project-card:hover .project-img {
+      transform: scale(1.08);
+      filter: grayscale(0%);
+    }
+    .project-overlay {
+      position: absolute; top:0; left:0; width:100%; height:100%; background:rgba(32,201,151,0.12); opacity:0; transition:opacity 0.3s; display:flex; flex-direction:column; justify-content:center; align-items:center; color:#fff; font-size:1.1rem; font-weight:700; text-align:center;
+    }
+    .project-card:hover .project-overlay { opacity: 1; }
+    .project-badge {
+      background: linear-gradient(90deg, var(--teal), var(--blue));
+      color: #fff;
+      border-radius: 1rem;
+      padding: 0.3rem 1rem;
+      font-size: 0.95rem;
+      margin: 0.2rem;
+      box-shadow: 0 2px 8px #20c99733;
+    }
+    /* --- EXPERIENCE SECTION --- */
+    #experience {
+      background: linear-gradient(120deg, #181a1b 0%, #23272b 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .experience-bg-svg {
+      position: absolute; z-index: 0; opacity: 0.12; pointer-events: none;
+      top: 0; left: 0; width: 100%; height: 100%;
     }
     .timeline-line {
       position: absolute; left: -27px; top: 0; bottom: 0; width: 4px;
-      background: linear-gradient(180deg, #20c997 0%, #0d6efd 100%);
+      background: linear-gradient(180deg, var(--teal) 0%, var(--blue) 100%);
       border-radius: 2px; box-shadow: 0 0 16px #20c99744;
     }
-    .carousel-indicators [data-bs-target] {
-      background-color: #20c997;
+    .timeline-dot {
+      width: 20px; height: 20px; background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 50%; box-shadow: 0 0 16px #20c99788; border: 3px solid #23272b;
+      position: absolute; left: -38px; top: 8px;
     }
-    .project-card {
-      border-radius: 1rem;
-      overflow: hidden;
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    .timeline-item {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(.77,0,.18,1), transform 0.8s cubic-bezier(.77,0,.18,1);
+      background: rgba(35,39,43,0.92);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px #20c99722;
+      padding: 2rem 2rem 2rem 3.5rem;
+      margin-bottom: 2.5rem;
+      position: relative;
     }
-    .project-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 60px rgba(32, 201, 151, 0.2);
+    .timeline-item.visible {
+      opacity: 1;
+      transform: none;
     }
-    .project-img {
-      transition: transform 0.5s ease-in-out;
+    .timeline-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      box-shadow: 0 2px 16px #20c99744;
+      border: 3px solid var(--teal);
+      background: #fff;
+      object-fit: cover;
     }
-    .project-card:hover .project-img {
-      transform: scale(1.1);
+    /* --- FOOTER --- */
+    footer {
+      background: linear-gradient(120deg, #181a1b 0%, #23272b 100%);
+      color: #fff;
+      padding: 2.5rem 0 1.5rem 0;
+      border-top-left-radius: 2rem;
+      border-top-right-radius: 2rem;
+      box-shadow: 0 -4px 32px #20c99733;
+      border-top: 2px solid #23272b;
+      position: relative;
+      z-index: 2;
+    }
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      flex-md-row: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .footer-social a {
+      font-size: 2rem;
+      color: #fff;
+      background: linear-gradient(135deg, var(--teal), var(--blue));
+      border-radius: 50%;
+      width: 48px; height: 48px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 16px #20c99744;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .footer-social a:hover {
+      transform: scale(1.15) rotate(-8deg);
+      box-shadow: 0 4px 32px #20c99788;
+      color: var(--teal);
+      background: #fff;
+    }
+    /* Responsive tweaks */
+    @media (max-width: 991px) {
+      .about-card, .timeline-item {
+        padding: 1.2rem 1rem 1.2rem 2rem;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+    }
+    @media (max-width: 767px) {
+      .hero-title { font-size: 2.1rem; }
+      .hero-profile { width: 120px; height: 120px; }
+      .about-profile-img { max-width: 160px; }
+      .about-card, .timeline-item { padding: 1rem; }
+      .timeline-dot, .timeline-line { left: -18px; }
+      .timeline-dot { width: 14px; height: 14px; top: 6px; }
+      .timeline-line { width: 3px; }
     }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -120,62 +414,102 @@
   </nav>
 
   <!-- Hero Section -->
-  <header id="home" class="hero-gradient d-flex align-items-center min-vh-100">
-    <div class="container hero-content text-center">
-      <img src="profile.jpg" alt="Profile" class="rounded-circle mb-4 shadow-lg border border-4 border-primary floating" width="170" height="170">
-      <h1 class="display-2 fw-bold mb-2 fade-in">Obaidullah Mansoor</h1>
-      <p class="lead mb-4 fade-in">Full Stack Developer <span class="text-primary">|</span> Python, Django, React, JS, HTML, CSS</p>
-      <div class="d-flex justify-content-center gap-3 mb-4 social-animated fade-in">
-        <a href="mailto:obaidullahman7@gmail.com" class="text-light fs-2"><i class="fas fa-envelope"></i></a>
-        <a href="tel:+923098899679" class="text-light fs-2"><i class="fas fa-phone"></i></a>
-        <a href="#" class="text-light fs-2"><i class="fab fa-github"></i></a>
-        <a href="#" class="text-light fs-2"><i class="fab fa-linkedin"></i></a>
+  <header id="home" class="hero-gradient position-relative">
+    <svg class="hero-bg-svg" viewBox="0 0 1440 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="heroGradient1" cx="0.5" cy="0.5" r="0.7">
+          <stop offset="0%" stop-color="#20c997" stop-opacity="0.25"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+        <radialGradient id="heroGradient2" cx="0.7" cy="0.7" r="0.8">
+          <stop offset="0%" stop-color="#0d6efd" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="transparent"/>
+        </radialGradient>
+      </defs>
+      <ellipse cx="400" cy="200" rx="340" ry="180" fill="url(#heroGradient1)"/>
+      <ellipse cx="1200" cy="600" rx="320" ry="160" fill="url(#heroGradient2)"/>
+    </svg>
+    <div class="container hero-content">
+      <img src="profile.jpg" alt="Profile" class="hero-profile">
+      <h1 class="hero-title">Obaidullah Mansoor</h1>
+      <div class="hero-subtitle"><span class="typewriter">Full Stack Developer | Python, Django, React, JS, HTML, CSS</span></div>
+      <div class="hero-social">
+        <a href="mailto:obaidullahman7@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="tel:+923098899679"><i class="fas fa-phone"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
       </div>
-      <div class="mb-4 fade-in">
-        <a href="#contact" class="btn btn-primary btn-lg me-2"><i class="fas fa-paper-plane me-2"></i>Contact Me</a>
-        <a href="https://drive.google.com/file/d/1ZGX7mm3oNtWCOq2BAXwepgNYxmkwYL-q/view?usp=sharing" target="_blank" class="btn btn-outline-light btn-lg"><i class="fas fa-download me-2"></i>Download CV</a>
+      <div class="hero-btns">
+        <a href="#contact" class="btn btn-primary"><i class="fas fa-paper-plane me-2"></i>Contact Me</a>
+        <a href="https://drive.google.com/file/d/1ZGX7mm3oNtWCOq2BAXwepgNYxmkwYL-q/view?usp=sharing" target="_blank" class="btn btn-outline-primary"><i class="fas fa-download me-2"></i>Download CV</a>
       </div>
+      <div class="hero-arrow"><i class="fas fa-angle-double-down"></i></div>
     </div>
   </header>
+  <!-- Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#23272b" d="M0,0 C480,60 960,0 1440,60 L1440,60 L0,60 Z"></path></svg>
 
   <!-- About Section -->
-  <section id="about" class="py-5">
+  <section id="about" class="py-5 position-relative">
+    <svg class="about-bg-svg" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="200" cy="200" rx="180" ry="80" fill="#20c99722"/>
+      <ellipse cx="1240" cy="100" rx="160" ry="60" fill="#0d6efd22"/>
+    </svg>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 mb-4 mb-lg-0 fade-in">
-          <div class="glass p-4 h-100">
+          <div class="about-card h-100">
             <h2 class="section-title">About Me</h2>
             <p class="fs-5">I'm <b>Obaidullah Mansoor</b>, a passionate full stack developer with a knack for building scalable, beautiful web applications. I love working with Python, Django, React, and modern web technologies to deliver impactful solutions.</p>
             <h5 class="mt-4">Skills</h5>
-            <div class="d-flex flex-wrap gap-2">
-              <span class="badge bg-primary">Python</span>
-              <span class="badge bg-primary">Django</span>
-              <span class="badge bg-primary">React</span>
-              <span class="badge bg-primary">JavaScript</span>
-              <span class="badge bg-primary">HTML</span>
-              <span class="badge bg-primary">CSS</span>
-              <span class="badge bg-primary">Bootstrap</span>
-              <span class="badge bg-primary">REST API</span>
-              <span class="badge bg-primary">PostgreSQL</span>
-              <span class="badge bg-primary">AWS</span>
+            <div class="about-skills">
+              <span class="badge"><i class="fab fa-python skill-icon"></i>Python</span>
+              <span class="badge"><i class="fab fa-django skill-icon"></i>Django</span>
+              <span class="badge"><i class="fab fa-react skill-icon"></i>React</span>
+              <span class="badge"><i class="fab fa-js skill-icon"></i>JavaScript</span>
+              <span class="badge"><i class="fab fa-html5 skill-icon"></i>HTML</span>
+              <span class="badge"><i class="fab fa-css3-alt skill-icon"></i>CSS</span>
+              <span class="badge"><i class="fab fa-bootstrap skill-icon"></i>Bootstrap</span>
+              <span class="badge"><i class="fas fa-plug skill-icon"></i>REST API</span>
+              <span class="badge"><i class="fas fa-database skill-icon"></i>PostgreSQL</span>
+              <span class="badge"><i class="fab fa-aws skill-icon"></i>AWS</span>
             </div>
+            <div class="about-bars">
+              <div class="about-bar-label">Python</div>
+              <div class="about-bar"><div class="about-bar-fill" style="width:90%"></div></div>
+              <div class="about-bar-label">Django</div>
+              <div class="about-bar"><div class="about-bar-fill" style="width:85%"></div></div>
+              <div class="about-bar-label">React</div>
+              <div class="about-bar"><div class="about-bar-fill" style="width:80%"></div></div>
+              <div class="about-bar-label">JavaScript</div>
+              <div class="about-bar"><div class="about-bar-fill" style="width:75%"></div></div>
+              <div class="about-bar-label">HTML/CSS</div>
+              <div class="about-bar"><div class="about-bar-fill" style="width:70%"></div></div>
+            </div>
+            <div class="about-quote">“Turning ideas into scalable, beautiful web solutions is my passion. I believe in clean code, great design, and continuous learning.”</div>
           </div>
         </div>
         <div class="col-lg-6 text-center fade-in">
-          <img src="profile.jpg" alt="Profile" class="img-fluid rounded-4 shadow-lg glass p-2" width="340">
+          <img src="profile.jpg" alt="Profile" class="about-profile-img">
         </div>
       </div>
     </div>
   </section>
+  <!-- Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#23272b" d="M0,60 C480,0 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
 
   <!-- Projects Section -->
-  <section id="projects" class="py-5 bg-secondary">
+  <section id="projects" class="py-5 position-relative">
+    <svg class="projects-bg-svg" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="1240" cy="100" rx="160" ry="60" fill="#0d6efd22"/>
+      <ellipse cx="200" cy="200" rx="180" ry="80" fill="#20c99722"/>
+    </svg>
     <div class="container">
       <h2 class="section-title text-center">Projects</h2>
       <div class="d-flex justify-content-center mb-4 gap-2">
-        <button class="btn btn-outline-primary project-filter active" data-filter="all">All</button>
-        <button class="btn btn-outline-primary project-filter" data-filter="python">Python</button>
-        <button class="btn btn-outline-primary project-filter" data-filter="flutter">Flutter</button>
+        <button class="project-filter active" data-filter="all">All</button>
+        <button class="project-filter" data-filter="python">Python</button>
+        <button class="project-filter" data-filter="flutter">Flutter</button>
       </div>
       <div class="row g-4" id="project-list">
         <!-- Project 1: Python -->
@@ -345,9 +679,15 @@
       </div>
     </div>
   </section>
+  <!-- Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#23272b" d="M0,60 C480,0 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
 
   <!-- Experience Section -->
-  <section id="experience" class="py-5">
+  <section id="experience" class="py-5 position-relative">
+    <svg class="experience-bg-svg" viewBox="0 0 1440 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="1240" cy="100" rx="160" ry="60" fill="#0d6efd22"/>
+      <ellipse cx="200" cy="200" rx="180" ry="80" fill="#20c99722"/>
+    </svg>
     <div class="container position-relative">
       <h2 class="section-title text-center">Experience</h2>
       <div class="row">
@@ -423,25 +763,32 @@
       </div>
     </div>
   </section>
+  <!-- Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#23272b" d="M0,60 C480,0 960,60 1440,0 L1440,60 L0,60 Z"></path></svg>
 
   <!-- Testimonials Section -->
-  <section id="testimonials" class="py-5 bg-dark">
-    <div class="container">
+  <section id="testimonials" class="py-5 position-relative" style="background: linear-gradient(135deg, #181a1b 0%, #23272b 100%); overflow:hidden;">
+    <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index:0; pointer-events:none;">
+      <div style="position:absolute;left:10%;top:10%;width:180px;height:180px;background:radial-gradient(circle,#20c99733 0%,transparent 80%);filter:blur(32px);"></div>
+      <div style="position:absolute;right:10%;bottom:10%;width:220px;height:220px;background:radial-gradient(circle,#0d6efd33 0%,transparent 80%);filter:blur(40px);"></div>
+    </div>
+    <div class="container position-relative" style="z-index:1;">
       <h2 class="section-title text-center">Testimonials</h2>
       <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="row justify-content-center">
               <div class="col-md-8">
-                <div class="card glass p-4 border-0">
-                  <div class="d-flex align-items-center mb-3">
-                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle me-3" width="56" height="56">
+                <div class="card glass p-5 border-0 text-center position-relative" style="backdrop-filter: blur(16px);">
+                  <span style="position:absolute;top:24px;left:24px;font-size:2.5rem;color:var(--teal);opacity:0.18;"><i class="fas fa-quote-left"></i></span>
+                  <div class="d-flex flex-column align-items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client" class="rounded-circle testimonial-avatar mb-2" width="80" height="80" style="border:4px solid var(--teal); box-shadow:0 0 24px #20c99799; transition:transform 0.3s;">
                     <div>
                       <h6 class="mb-0">Ali Raza</h6>
                       <small class="text-muted">CEO, Tech Solutions</small>
                     </div>
                   </div>
-                  <p class="mb-0">"Obaidullah is a highly skilled developer who delivers quality work on time. His expertise in Django and React is top-notch!"</p>
+                  <p class="mb-0 fs-4">"Obaidullah is a highly skilled developer who delivers quality work on time. His expertise in Django and React is top-notch!"</p>
                 </div>
               </div>
             </div>
@@ -449,15 +796,16 @@
           <div class="carousel-item">
             <div class="row justify-content-center">
               <div class="col-md-8">
-                <div class="card glass p-4 border-0">
-                  <div class="d-flex align-items-center mb-3">
-                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle me-3" width="56" height="56">
+                <div class="card glass p-5 border-0 text-center position-relative" style="backdrop-filter: blur(16px);">
+                  <span style="position:absolute;top:24px;left:24px;font-size:2.5rem;color:var(--teal);opacity:0.18;"><i class="fas fa-quote-left"></i></span>
+                  <div class="d-flex flex-column align-items-center mb-3">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client" class="rounded-circle testimonial-avatar mb-2" width="80" height="80" style="border:4px solid var(--teal); box-shadow:0 0 24px #20c99799; transition:transform 0.3s;">
                     <div>
                       <h6 class="mb-0">Sara Khan</h6>
                       <small class="text-muted">Project Manager, Web Innovators</small>
                     </div>
                   </div>
-                  <p class="mb-0">"Great communicator and problem solver. Obaidullah's solutions are always efficient and reliable."</p>
+                  <p class="mb-0 fs-4">"Great communicator and problem solver. Obaidullah's solutions are always efficient and reliable."</p>
                 </div>
               </div>
             </div>
@@ -478,7 +826,8 @@
       </div>
     </div>
   </section>
-
+  <!-- Footer Wave Divider -->
+  <svg class="wave-divider" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="#20c997" d="M0,0 C480,60 960,0 1440,60 L1440,60 L0,60 Z"></path></svg>
   <!-- Contact Section -->
   <section id="contact" class="py-5 bg-secondary position-relative" style="overflow:hidden;">
     <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index:0; pointer-events:none;">
@@ -491,7 +840,7 @@
         <div class="text-muted mb-2">Let's build something amazing together. Reach out for collaborations, freelance, or just to say hi!</div>
       </div>
       <div class="row g-4 align-items-stretch justify-content-center">
-        <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-stretch">
+        <!-- <div class="col-lg-6 mb-4 mb-lg-0 d-flex align-items-stretch">
           <form id="contact-form" class="glass p-5 shadow-lg rounded-5 w-100 d-flex flex-column justify-content-center contact-form-premium" style="backdrop-filter: blur(20px); min-height: 440px; background: linear-gradient(135deg,rgba(32,201,151,0.18) 0%,rgba(13,110,253,0.14) 100%); border: 2px solid rgba(32,201,151,0.18); box-shadow: 0 8px 48px #20c99733;">
             <div class="row g-4">
               <div class="col-md-6">
@@ -512,11 +861,12 @@
               <label for="message" class="ps-4">Message</label>
             </div>
             <button type="submit" class="btn btn-primary btn-lg w-100 d-flex align-items-center justify-content-center gap-2 mt-2 shadow-lg" style="font-size:1.3rem; background: linear-gradient(90deg, #20c997 0%, #0d6efd 100%); border: none; box-shadow: 0 2px 24px #20c99755, 0 4px 32px #0d6efd33; border-radius: 2rem; transition: box-shadow 0.2s;">
-              <i class="fas fa-paper-plane"></i> Send Message
+              <i class="fas fa-paper-plane"></i> <span id="contact-btn-text">Send Message</span>
+              <span id="contact-success-icon" style="display:none;"><i class="fas fa-check-circle" style="color:#20c997;font-size:1.5rem;"></i></span>
             </button>
             <div id="form-status" class="mt-3"></div>
           </form>
-        </div>
+        </div> -->
         <div class="col-lg-6 d-flex align-items-stretch">
           <div class="glass p-5 rounded-4 shadow-lg w-100 d-flex flex-column justify-content-center align-items-center text-center contact-info-premium" style="background: linear-gradient(135deg,rgba(32,201,151,0.12) 0%,rgba(13,110,253,0.10) 100%); min-height: 420px;">
             <div class="mb-4">
@@ -551,14 +901,13 @@
       </div>
     </div>
   </section>
-
   <!-- Footer -->
-  <footer class="mt-5">
+  <footer class="mt-0">
     <div class="container footer-content">
-      <div>
-        <small>&copy; 2024 Obaidullah Mansoor. All rights reserved.</small>
+      <div class="mb-2 mb-md-0">
+        <small class="fw-bold">&copy; <span id="footer-year"></span> Obaidullah Mansoor. All rights reserved.</small>
       </div>
-      <div class="footer-social">
+      <div class="footer-social d-flex gap-3">
         <a href="mailto:obaidullahman7@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
         <a href="tel:+923098899679" aria-label="Phone"><i class="fas fa-phone"></i></a>
         <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
@@ -578,6 +927,12 @@
           el.classList.add('visible');
         }
       });
+      document.querySelectorAll('.timeline-item').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 60) {
+          el.classList.add('visible');
+        }
+      });
     }
     window.addEventListener('scroll', revealOnScroll);
     window.addEventListener('DOMContentLoaded', revealOnScroll);
@@ -592,10 +947,18 @@
         .then(function() {
           document.getElementById('form-status').innerHTML = '<span style="color: #20c997;">Message sent successfully!</span>';
           document.getElementById('contact-form').reset();
+          document.getElementById('contact-btn-text').style.display = 'none';
+          document.getElementById('contact-success-icon').style.display = 'inline-block';
+          setTimeout(function() {
+            document.getElementById('contact-btn-text').style.display = 'inline-block';
+            document.getElementById('contact-success-icon').style.display = 'none';
+          }, 2500);
         }, function(error) {
           document.getElementById('form-status').innerHTML = '<span style="color: #dc3545;">Failed to send message. Please try again later.</span>';
         });
     });
+    // Dynamic year in footer
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html> 
